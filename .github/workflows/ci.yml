@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php-version: ["8.2", "8.3"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          extensions: json, curl
+          coverage: none
+          tools: composer:v2
+      - name: Validate composer.json
+        run: composer validate --strict --no-check-lock
+      - name: Install dependencies
+        # No composer.lock in a library repo: resolve the newest versions the constraints allow.
+        run: composer install --no-interaction --no-progress --prefer-dist
+      - name: Unit tests
+        run: vendor/bin/phpunit --testsuite unit

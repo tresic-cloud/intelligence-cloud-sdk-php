@@ -1,0 +1,42 @@
+{
+    "name": "intelligence-cloud/sdk",
+    "description": "PHP SDK for the Intelligence Cloud partner API: customer lifecycle and conversation intelligence.",
+    "type": "library",
+    "license": "proprietary",
+    "homepage": "https://docs.intelligence.cloud",
+    "support": {
+        "docs": "https://docs.intelligence.cloud/api",
+        "source": "https://github.com/tresic-cloud/intelligence-cloud-sdk-php",
+        "email": "support@tresic.cloud"
+    },
+    "keywords": [
+        "intelligence-cloud",
+        "conversation-intelligence",
+        "api",
+        "sdk"
+    ],
+    "require": {
+        "php": ">=8.2",
+        "ext-json": "*",
+        "guzzlehttp/guzzle": "^7.5"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "IntelligenceCloud\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "IntelligenceCloud\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit --testsuite unit"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
